@@ -1,0 +1,18 @@
+<h1>Map#list</h1>
+<p>Find me in app/views/map/list.html.erb</p>
+
+<h2>Locations</h2>
+<table>
+  <tr>
+    <th>Node</th>
+    <th>Neighbors-Distances</th>
+  </tr>
+  <% @locations.each do |location| %>
+    <tr>
+      <td><%= location %></td>
+      <td>
+        <%= location.paths.map { |path| path.neighbor_and_distance }.join ', ' %>
+      </td>
+    </tr>
+  <% end %>
+</table>
