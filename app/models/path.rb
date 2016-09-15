@@ -27,6 +27,11 @@ class Path < ApplicationRecord
 
 
 
+
+  def self.draw(from_id, to_id)
+    Location.find(from_id).add_neighbor to_id
+  end
+
   def neighbor_and_distance
     "#{neighbor}-#{0}"
   end
