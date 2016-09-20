@@ -1,0 +1,22 @@
+.clicked_coordinates
+  X Position: 0 - Y Position: 0
+
+#map
+  = render partial: 'map'
+
+#map_form
+  = form_tag update_map_path, method: :post, remote: 'true' do
+    %ul(style="display: none")
+      - @locations.each do |location|
+        %li.coordinates
+          %input{ type: 'number', name: "location_#{location.id}_x_position" }
+          %input{ type: 'number', name: "location_#{location.id}_y_position" }
+    = submit_tag
+
+
+:javascript
+  document.addEventListener("click", printMousePos);
+  document.addEventListener("click", inputClickedCoordinates);
+  document.addEventListener("click", drawNewLocation);
+  $('#map_form .coordinates:first').addClass('selected');
+

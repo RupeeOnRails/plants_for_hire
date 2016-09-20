@@ -1,0 +1,24 @@
+- horizontal_offset = 50
+- vertical_offset = 150
+
+- @locations.each do |location|
+  .location{ style:"left: #{ location.x + horizontal_offset }px; top: #{ location.y + vertical_offset }px", data: { id: location.id } }
+    = location
+
+.right
+  #location_detail
+
+%canvas#canvas{ width: '920px', height: '760px' }
+  :javascript
+    var c = document.getElementById("canvas");
+    var ctx = c.getContext("2d");
+
+    var paths = #{@paths.to_json}
+    var horizontal_offset = 62
+    var vertical_offset = 162
+
+    paths.forEach(function(path){
+      ctx.moveTo(path[0][0] + horizontal_offset, path[0][1] + vertical_offset);
+      ctx.lineTo(path[1][0] + horizontal_offset, path[1][1] + vertical_offset)
+      ctx.stroke();
+    });

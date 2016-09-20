@@ -3,9 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .location
-  display: inline-block
-  //position: absolute
-  background: blue
-  width: 12px
-  height: 12px
   border-radius: 50%
+  width: 24px
+  height: 24px
+  position: absolute
+  background: blue
+  color: white
+  display: flex
+  align-items: center
+  justify-content: center
+
+  cursor: pointer
+
+.new_location
+  @extend  .location
+  background: #0f0
+
+canvas
+  position: absolute
+  left: 0
+  top: 0
+  z-index: -10

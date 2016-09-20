@@ -1,0 +1,12 @@
+%h2= "Location #{location.id}"
+%h4
+  Coorodinates
+  = "(#{location.x},#{location.y})"
+%table
+  %tr
+    %th Neighbor
+    %th Distance
+  - @location.paths.each do |path|
+    %tr
+      %td= path.neighbor
+      %td 0

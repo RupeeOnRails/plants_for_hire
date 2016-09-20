@@ -36,4 +36,8 @@ class Path < ApplicationRecord
     "#{neighbor}-#{0}"
   end
 
+  def coordinates
+    [location.coordinates, neighbor.coordinates]
+  end
+
 end
