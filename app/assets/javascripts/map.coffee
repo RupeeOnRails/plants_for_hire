@@ -35,3 +35,6 @@ root.drawNewLocation = (event) ->
 
 $(document).on 'click', '.location[data-id]', ->
   $.get("/locations/#{ $(this).data('id') }")
+  $('.location').removeClass 'viewing'
+  $(this).addClass 'viewing'
+  
