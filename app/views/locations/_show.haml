@@ -1,12 +1,20 @@
 %h2= "Location #{location.id}"
-%h4
-  Coordinates
-  = "(#{location.x},#{location.y})"
-%table
-  %tr
-    %th Neighbor
-    %th Distance
-  - @location.paths.each do |path|
+= form_for location do |f|
+  %table
     %tr
-      %td= path.neighbor
-      %td 0
+      %th Coordinates
+    %tr
+      %td= f.number_field :x_position
+      %td= f.number_field :y_position
+
+  %table
+    %tr
+      %th Neighbor
+      %th Distance
+    - location.paths.each do |path|
+      %tr
+        %td= path.neighbor.id
+        %td 0
+
+
+  = f.submit

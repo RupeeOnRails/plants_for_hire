@@ -2,6 +2,8 @@ class Location < ApplicationRecord
   has_many :paths
   has_many :neighbors, through: :paths, dependent: :destroy
 
+  accepts_nested_attributes_for :paths
+
   def add_neighbor(id)
     neighbors << Location.find(id)
   end

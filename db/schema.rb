@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915154730) do
+ActiveRecord::Schema.define(version: 20160922143435) do
 
   create_table "locations", force: :cascade do |t|
     t.integer "x_position"
@@ -22,9 +22,10 @@ ActiveRecord::Schema.define(version: 20160915154730) do
     t.integer  "neighbor_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "distance"
     t.index ["location_id", "neighbor_id"], name: "index_paths_on_location_id_and_neighbor_id", unique: true
     t.index ["location_id"], name: "index_paths_on_location_id"
-     t.index ["neighbor_id"], name: "index_paths_on_neighbor_id"
+    t.index ["neighbor_id"], name: "index_paths_on_neighbor_id"
   end
 
 end
