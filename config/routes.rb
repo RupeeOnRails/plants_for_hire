@@ -10,9 +10,15 @@ Rails.application.routes.draw do
 
   post 'update_map', to: 'map#update'
 
+  get 'map/play'
+  get 'play', to: 'map#play'
+
   root to: 'map#list'
 
   resources :locations
+
+  resources :player
+  get 'player/move/:location_id', to: 'player#move'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

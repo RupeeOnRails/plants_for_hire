@@ -33,8 +33,6 @@ root.drawNewLocation = (event) ->
   $('#map').append("<div class='new_location' style='left: #{x_position}px; top: #{y_position}px;'></div>")
 
 
-$(document).on 'click', '.location[data-id]', ->
-  $.get("/locations/#{ $(this).data('id') }")
-  $('.location').removeClass 'viewing'
-  $(this).addClass 'viewing'
+#root.test = (event) ->
+#  debugger
   

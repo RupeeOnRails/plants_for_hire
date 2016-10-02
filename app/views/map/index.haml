@@ -1,0 +1,11 @@
+%h1Map
+
+= render partial: 'map'
+
+
+:javascript
+  $(document).on('click', '.location[data-id]', function(){
+    $.get("/locations/" + $(this).data('id'));
+    $('.location').removeClass('viewing');
+    $(this).addClass('viewing');
+  });

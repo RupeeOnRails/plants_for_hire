@@ -19,6 +19,10 @@ class MapController < ApplicationController
     end
   end
 
+  def play
+    @player = Player.first
+  end
+
   private
 
   def set_locations

@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922143435) do
+ActiveRecord::Schema.define(version: 20160923183426) do
+
+  create_table "destinations", force: :cascade do |t|
+    t.integer "location_id"
+    t.integer "next_destination_id"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.integer "x_position"
@@ -26,6 +31,12 @@ ActiveRecord::Schema.define(version: 20160922143435) do
     t.index ["location_id", "neighbor_id"], name: "index_paths_on_location_id_and_neighbor_id", unique: true
     t.index ["location_id"], name: "index_paths_on_location_id"
     t.index ["neighbor_id"], name: "index_paths_on_neighbor_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string  "name"
+    t.integer "location_id"
+    t.integer "destination_id"
   end
 
 end
