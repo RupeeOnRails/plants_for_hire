@@ -5,8 +5,6 @@
   .location{ style:"left: #{ location.x + horizontal_offset }px; top: #{ location.y + vertical_offset }px", data: { id: location.id } }
     = location
 
-#location_detail
-
 %canvas#canvas{ width: '920px', height: '760px' }
   :javascript
     var c = document.getElementById("canvas");

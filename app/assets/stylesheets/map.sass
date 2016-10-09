@@ -26,6 +26,10 @@
     background: #0f0
     color: black
 
+  &.destination
+    background: #0ff
+    color: black
+
 .new_location
   @extend  .location
   background: #0f0
@@ -35,20 +39,3 @@ canvas
   left: 0
   top: 0
   z-index: -10
-
-#location_detail
-  font-size: 150%
-  float: right
-  background: #fafafa
-  padding: 1em
-  box-shadow: 0 1px 6px rgba(0,0,0,.6)
-  width: 8em
-  height: 11em
-
-  h2
-    margin: 0 0 .5em
-  h4
-    margin: 0 0 .375em
-
-  input[type='number']
-    width: 5em

@@ -1,7 +1,17 @@
 = render partial: 'map'
 
+#detail
+  %table
+    %tr
+      %th Points:
+    %tr
+      %td#points= @player.points
+  #flash
+
+
 :javascript
   $('.location[data-id=#{@player.location.id}]').addClass('player');
+  $('.location[data-id=#{@player.next_location_id}]').addClass('destination');
   $(document).on('click', '.location[data-id]', function(){
     $.get("/player/move/" + $(this).data('id'));
   });

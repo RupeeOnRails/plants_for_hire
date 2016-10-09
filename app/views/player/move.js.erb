@@ -1,3 +1,9 @@
-$('.flash').html('');
-$('.location').removeClass('player');
-$('.location[data-id=<%= @player.location.id %>]').addClass('player');
+$('#detail').fadeOut(100);
+window.setTimeout(function(){
+  $('.flash').html('');
+  $('.location').removeClass('player').removeClass('destination');
+  $('.location[data-id=<%= @player.location.id %>]').addClass('player');
+  $('#points').html('<%= @player.points %>');
+  $('#detail').fadeIn('fast');
+  $('.location[data-id=<%= @player.next_location_id %>]').addClass('destination');
+}, 100);
