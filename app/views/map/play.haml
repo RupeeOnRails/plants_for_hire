@@ -6,6 +6,8 @@
       %th Points:
     %tr
       %td#points= @player.points
+  %p
+    = link_to 'Finish Day', finish_day_path, remote: true
   #flash
 
 

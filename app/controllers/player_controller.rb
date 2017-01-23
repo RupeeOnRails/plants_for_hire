@@ -13,4 +13,10 @@ class PlayerController < ApplicationController
     # @flash = 'Not enough points.'
     # @flash = 'Please select a neighboring location.'
   end
+
+  def finish_day
+    @player = current_player
+    @player.reset_points
+    @player.set_home_location
+  end
 end

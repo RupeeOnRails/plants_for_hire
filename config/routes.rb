@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :player
   get 'player/move/:location_id', to: 'player#move'
-
+  get 'finish_day', to: 'player#finish_day', as: 'finish_day'
 
   mount ActionCable.server => '/cable'
 

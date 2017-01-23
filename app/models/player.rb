@@ -8,6 +8,7 @@ class Player < ApplicationRecord
 
   def set_home_location
     self.location = Location.find STARTING_LOCATION
+    save
   end
 
   # if success returns falsey, failure returns error message
@@ -46,7 +47,7 @@ class Player < ApplicationRecord
   end
 
   def reset_points
-    self.points = 24
+    self.points = 16
     save
   end
 
