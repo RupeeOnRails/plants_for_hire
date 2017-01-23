@@ -20,5 +20,8 @@ Rails.application.routes.draw do
   resources :player
   get 'player/move/:location_id', to: 'player#move'
 
+
+  mount ActionCable.server => '/cable'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

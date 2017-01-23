@@ -7,5 +7,6 @@ class MoveWorker
     player.set_location location
     player.destination = nil
     player.save
+    MoveBroadcast.perform_async(player_id)
   end
 end

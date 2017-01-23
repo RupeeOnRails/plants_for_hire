@@ -25,7 +25,14 @@ class Player < ApplicationRecord
         self.points -= 0.25
         self.destination = Destination.to(location)
         save
-        MoveWorker.perform_async(self.id, location.id)
+        # MoveWorker.perform_async(self.id, location.id)
+
+        self.set_location location
+        self.destination = nil
+        self.save
+        # MoveBroadcast.perform_async(player_id)
+
+
         false
       else
         'Not enough points.'
