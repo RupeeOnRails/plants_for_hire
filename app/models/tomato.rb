@@ -1,0 +1,3 @@
+class Tomato < Item
+
+end

@@ -1,9 +1,14 @@
 $('#detail').fadeOut(100);
 window.setTimeout(function(){
   $('.flash').html('');
+  // clear board
   $('.location').removeClass('player').removeClass('destination');
+  // add player with updated location
   $('.location[data-id=<%= @player.location.id %>]').addClass('player');
+
   $('#points').html('<%= @player.points %>');
+  // update_points
+  
   $('#detail').fadeIn('fast');
-  $('.location[data-id=<%= @player.next_location_id %>]').addClass('destination');
+  // $('.location[data-id=<%= @player.next_location_id %>]').addClass('destination');
 }, 100);

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'map/play'
   get 'play', to: 'map#play'
 
-  root to: 'map#list'
+  root to: 'map#play'
 
   resources :locations
 

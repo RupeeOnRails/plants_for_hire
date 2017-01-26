@@ -1,0 +1,3 @@
+class Potato < Item
+
+end

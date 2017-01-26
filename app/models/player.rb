@@ -1,6 +1,9 @@
 class Player < ApplicationRecord
   belongs_to :location, optional: true
   belongs_to :destination, optional: true
+  has_one :inventory
+  has_many :inventory_items, through: :inventory
+  has_many :items, through: :inventory_items
 
   STARTING_LOCATION = 19
 
@@ -71,4 +74,7 @@ class Player < ApplicationRecord
     destination ? destination.location_id : 0
   end
 
+  def to_s
+    name
+  end
 end
