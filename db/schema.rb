@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126195012) do
+ActiveRecord::Schema.define(version: 20170127170037) do
 
   create_table "destinations", force: :cascade do |t|
     t.integer "location_id"
@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(version: 20170126195012) do
   end
 
   create_table "inventories", force: :cascade do |t|
-    t.integer "player_id"
+    t.integer "owner_id"
+    t.string  "owner_type"
   end
 
   create_table "inventory_items", force: :cascade do |t|
@@ -53,6 +54,11 @@ ActiveRecord::Schema.define(version: 20170126195012) do
     t.integer "destination_id"
     t.float   "points"
     t.integer "money",          default: 0
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string  "name"
+    t.integer "location_id"
   end
 
 end

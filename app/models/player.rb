@@ -1,7 +1,7 @@
 class Player < ApplicationRecord
   belongs_to :location, optional: true
   belongs_to :destination, optional: true
-  has_one :inventory
+  has_one :inventory, as: :owner
   has_many :inventory_items, through: :inventory
   has_many :items, through: :inventory_items
 
