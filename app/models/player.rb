@@ -5,12 +5,21 @@ class Player < ApplicationRecord
   has_many :inventory_items, through: :inventory
   has_many :items, through: :inventory_items
 
+  # after_create :initialize_inventory
+
   STARTING_LOCATION = 19
 
   after_commit :set_home_location, on: :create
 
+  # def initialize_inventory
+  #   i = Inventory.new
+  #   i.size = 24
+  #   i.save
+  #   self.inventory = i
+  # end
+
   def set_home_location
-    self.location = Location.find STARTING_LOCATION
+    self.location_id = STARTING_LOCATION
     save
   end
 
@@ -76,5 +85,18 @@ class Player < ApplicationRecord
 
   def to_s
     name
+  end
+
+  def buy_from(supplier, item)
+    s = supplier.inventory
+    p = inventory
+
+    # something about cost
+    
+    s.unload_to p, item
+  end
+  
+  def inv
+    inventory
   end
 end

@@ -10,6 +10,10 @@
       %th Money:
     %tr
       %td= @player.money
+    %tr
+      %th Inventory:
+    %tr
+      %td= @player.inventory
   %p
     = link_to 'Finish Day', finish_day_path, remote: true
   #flash

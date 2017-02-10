@@ -3,6 +3,6 @@ class InventoryItem < ApplicationRecord
   belongs_to :item
 
   def to_s
-    "#{item} (x#{quantity})"
+    "#{quantity} x #{item}"
   end
 end

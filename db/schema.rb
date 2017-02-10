@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170127170037) do
+ActiveRecord::Schema.define(version: 20170130181624) do
 
   create_table "destinations", force: :cascade do |t|
     t.integer "location_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170127170037) do
   create_table "inventories", force: :cascade do |t|
     t.integer "owner_id"
     t.string  "owner_type"
+    t.integer "size"
   end
 
   create_table "inventory_items", force: :cascade do |t|
