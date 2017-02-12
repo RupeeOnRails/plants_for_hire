@@ -6,4 +6,8 @@ class Supplier < ApplicationRecord
   def inv
     inventory
   end
+
+  def to_s
+    name
+  end
 end

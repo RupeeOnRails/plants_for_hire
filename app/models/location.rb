@@ -1,6 +1,8 @@
 class Location < ApplicationRecord
   has_many :paths
   has_many :neighbors, through: :paths, dependent: :destroy
+  has_many :players
+  has_many :suppliers
 
   accepts_nested_attributes_for :paths
 

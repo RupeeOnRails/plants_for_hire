@@ -21,6 +21,7 @@ class MapController < ApplicationController
 
   def play
     @player = Player.first
+    @location = @player.location
   end
 
   private

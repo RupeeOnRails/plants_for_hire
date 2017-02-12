@@ -14,6 +14,11 @@
       %th Inventory:
     %tr
       %td= @player.inventory
+    %tr
+      %th What's Up:
+    %tr
+      %td#whats_up
+        = @location.suppliers.map{|s| s.to_s}.join(', ')
   %p
     = link_to 'Finish Day', finish_day_path, remote: true
   #flash
