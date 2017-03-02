@@ -1,0 +1,25 @@
+%table
+  %tr
+    %th Points:
+    %td#points= @player.points
+  %tr
+    %th Money:
+    %td= @player.money
+  %tr
+    %th Inventory:
+  %tr
+    %td= @player.inventory
+  %tr
+    %th(colspan=2) This Location:
+  %tr
+    %td#whats_up
+      - if @player.location.suppliers.present?
+        = @player.location.suppliers.first
+        = link_to '(buy)', buy_from_location_path, remote: true
+
+      - if @player.location.buyers.present?
+        = @player.location.buyers.first
+        = link_to '(sell)', sell_from_location_path, remote: true
+%p
+  = link_to 'Finish Day', finish_day_path, remote: true
+#flash

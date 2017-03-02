@@ -19,4 +19,16 @@ class PlayerController < ApplicationController
     @player.reset_points
     @player.set_home_location
   end
+
+  def buy_from_location
+    @player = current_player
+    @player.buy
+    render 'player/buy'
+  end
+
+  def sell_from_location
+    @player = current_player
+    @player.sell
+    render 'player/sell'
+  end
 end

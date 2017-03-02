@@ -3,7 +3,8 @@ class Location < ApplicationRecord
   has_many :neighbors, through: :paths, dependent: :destroy
   has_many :players
   has_many :suppliers
-
+  has_many :buyers
+  
   accepts_nested_attributes_for :paths
 
   def add_neighbor(id)
@@ -33,6 +34,13 @@ class Location < ApplicationRecord
 
   def coordinates
     [x_position, y_position]
+  end
+
+  def available_actions
+    list = []
+    list << :buy if suppliers.size > 0
+    list << :sell if buyers.size > 0
+    list
   end
 
 end

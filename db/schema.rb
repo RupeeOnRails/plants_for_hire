@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130181624) do
+ActiveRecord::Schema.define(version: 20170227185155) do
+
+  create_table "buyers", force: :cascade do |t|
+    t.string  "name"
+    t.integer "location_id"
+  end
 
   create_table "destinations", force: :cascade do |t|
     t.integer "location_id"

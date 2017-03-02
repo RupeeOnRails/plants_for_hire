@@ -95,8 +95,38 @@ class Player < ApplicationRecord
     
     s.unload_to p, item
   end
+
+  def sell_to(buyer, item)
+    s = inventory
+    p = buyer.inventory
+
+    # something about cost
+    
+    s.unload_to p, item
+  end
   
   def inv
     inventory
+  end
+
+  def location_actions
+    location.available_actions
+  end
+
+  def buy
+    if location_actions.include? :buy
+      supplier = location.suppliers.first
+      item = supplier.items.first
+      buy_from supplier, item
+    end
+  end
+
+  def sell
+    if location_actions.include? :sell
+      buyer = location.buyers.first
+      item = items.first
+      sell_to buyer, item
+    end
+
   end
 end

@@ -6,8 +6,10 @@ window.setTimeout(function(){
   // add player with updated location
   $('.location[data-id=<%= @player.location.id %>]').addClass('player');
 
-  $('#points').html('<%= @player.points %>');
-  // update_points
+  // update_detail
+  $('#detail').html("<%= j render partial: 'map/detail' %>");
+
+
   
   $('#detail').fadeIn('fast');
   // $('.location[data-id=<%= @player.next_location_id %>]').addClass('destination');

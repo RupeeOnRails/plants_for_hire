@@ -1,10 +1,8 @@
 $('#detail').fadeOut(100);
 window.setTimeout(function(){
-  $('.flash').html('');
+  $('#detail').html("<%= j render partial: 'map/detail' %>");
   $('.location').removeClass('player').removeClass('destination');
   $('.location[data-id=<%= @player.location.id %>]').addClass('player');
-  $('#points').html('<%= @player.points %>');
-  $('#whats_up').html('<%= @location.suppliers.map{|s| s.to_s}.join(', ') %>');
   $('#detail').fadeIn('fast');
   $('.location[data-id=<%= @player.next_location_id %>]').addClass('destination');
 }, 100);
