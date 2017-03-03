@@ -4,6 +4,11 @@ class PlayerController < ApplicationController
     @location = Location.find params[:location_id]
     @player = current_player
     @error = @player.set_destination(@location)
+    @merchant = if @location.buyers.present?
+      @location.buyers.first
+    elsif @location.suppliers.present?
+      @location.suppliers.first
+    end
     if !@error
       render 'move'
     else

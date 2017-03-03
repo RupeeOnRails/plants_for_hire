@@ -22,6 +22,11 @@ class MapController < ApplicationController
   def play
     @player = Player.first
     @location = @player.location
+    @merchant = if @location.buyers.present?
+      @location.buyers.first
+    elsif @location.suppliers.present?
+      @location.suppliers.first
+    end
   end
 
   private

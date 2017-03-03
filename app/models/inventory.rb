@@ -4,7 +4,11 @@ class Inventory < ApplicationRecord
   belongs_to :owner, polymorphic: true
 
   def to_s
-    inventory_items.map{|t| t.to_s}.join(', ')
+    if inventory_items.blank?
+      '(empty)'
+    else
+      inventory_items.map{|t| t.to_s}.join(', ')
+    end
   end
 
   def add_item(item, quantity = 1)

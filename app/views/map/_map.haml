@@ -1,9 +1,10 @@
 - horizontal_offset = 50
 - vertical_offset = 150
 
-- @locations.each do |location|
-  .location{ style:"left: #{ location.x + horizontal_offset }px; top: #{ location.y + vertical_offset }px", data: { id: location.id } }
-    = location
+#locations
+  - @locations.each do |location|
+    .location{ style:"left: #{ location.x + horizontal_offset }px; top: #{ location.y + vertical_offset }px", data: { id: location.id } }
+      = location
 
 %canvas#canvas{ width: '920px', height: '760px' }
   :javascript
