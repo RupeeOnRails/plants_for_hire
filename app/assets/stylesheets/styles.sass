@@ -17,15 +17,14 @@ body
   display: flex
   flex-direction: column
   justify-content: space-around
-  padding: 1em
+  padding: 1.5em 2em
 
-#detail .card
+.card
   font-size: 150%
   background: #fafafa
-  padding: 1em
-  box-shadow: 0 1px 6px rgba(0,0,0,.6)
-  width: 8em
-  height: 11em
+  box-shadow: 0 2px 8px rgba(0,0,0,.6)
+  width: 9em
+  height: 12em
 
   h2
     margin: 0 0 .5em
@@ -39,6 +38,28 @@ body
 
   table
     width: 100%
+
+  .header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: .5em
+    color: white
+    font-weight: bold
+
+    i.material-icons
+      line-height: .85em
+      font-size: 29px
+    .spacer
+      width: 29px
+
+  .body
+    padding: .5em 1em
+
+#player_detail .header
+  background: #0a0
+#location_detail .header
+  background: #00c
 
 .flash
   display: inline-block
