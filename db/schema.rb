@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227185155) do
+ActiveRecord::Schema.define(version: 20170304012615) do
 
   create_table "buyers", force: :cascade do |t|
     t.string  "name"
@@ -60,6 +60,18 @@ ActiveRecord::Schema.define(version: 20170227185155) do
     t.integer "destination_id"
     t.float   "points"
     t.integer "money",          default: 0
+  end
+
+  create_table "stock_orders", force: :cascade do |t|
+    t.integer "merchant_id"
+    t.string  "merchant_type"
+  end
+
+  create_table "stock_rules", force: :cascade do |t|
+    t.integer "stock_order_id"
+    t.integer "item_id"
+    t.integer "price"
+    t.integer "restock"
   end
 
   create_table "suppliers", force: :cascade do |t|

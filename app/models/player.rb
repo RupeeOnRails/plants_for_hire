@@ -88,21 +88,29 @@ class Player < ApplicationRecord
   end
 
   def buy_from(supplier, item)
-    s = supplier.inventory
-    p = inventory
+    source = supplier.inventory
+    target = inventory
 
     # something about cost
+
+
+
     
-    s.unload_to p, item
+    source.unload_to target, item
   end
 
   def sell_to(buyer, item)
-    s = inventory
-    p = buyer.inventory
+    return false if item.nil?
 
-    # something about cost
+    source = inventory
+    target = buyer.inventory
+
+    cost = buyer.price_for(item)
     
-    s.unload_to p, item
+    quantity = source.unload_to target, item
+    total = cost * quantity
+    self.money += total
+    save
   end
   
   def inv
@@ -128,5 +136,16 @@ class Player < ApplicationRecord
       sell_to buyer, item
     end
 
+  end
+
+  def finish_day
+    reset_points
+    set_home_location
+    trigger_restock
+  end
+
+  def trigger_restock
+    Buyer.all.each {|b| b.restock}
+    Supplier.all.each {|s| s.restock}
   end
 end

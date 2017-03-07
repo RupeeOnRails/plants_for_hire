@@ -62,3 +62,44 @@ PATHS.each_pair do |location, neighbors|
     Path.draw location, neighbor
   end
 end
+
+s = Supplier.new
+s.name = 'Mrs. Spaghetti'
+s.location = Location.find 28
+s.save
+
+si = Inventory.new
+si.size = 120
+si.owner = s
+si.save
+
+s_order = StockOrder.new
+s_order.merchant = s
+s_order.save
+
+s_rule = StockRule.new
+s_rule.item = Tomato.first
+s_rule.price = 0
+s_rule.restock = 12
+s_rule.save
+
+
+b = Buyer.new
+b.name = "Food 'N' Stuff"
+b.location = Location.find 30
+b.save
+
+bi = Inventory.new
+bi.size = 120
+bi.owner = s
+bi.save
+
+b_order = StockOrder.new
+b_order.merchant = b
+b_order.save
+
+b_rule = StockRule.new
+b_rule.item = Tomato.first
+b_rule.price = 1
+b_rule.restock = -32
+b_rule.save

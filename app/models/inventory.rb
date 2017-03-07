@@ -11,16 +11,28 @@ class Inventory < ApplicationRecord
     end
   end
 
-  def add_item(item, quantity = 1)
-    if self.items.include? item
-      iventory_item = inventory_items.find{|ii| ii.item == item}
-      iventory_item.quantity += quantity
-      iventory_item.save
+  def adjust_item(item, quantity)
+    if quantity < 0
+      remove_item item, (quantity * -1)
     else
-      inventory_item = InventoryItem.new
-      inventory_item.item = item
-      inventory_item.quantity = quantity
-      inventory_items << inventory_item
+      add_item item, quantity
+    end
+  end
+
+  def add_item(item, quantity = 1)
+    if items.include? item
+      ii = inventory_items.find{|ii| ii.item == item}
+      if quantity <= self.space
+        ii.quantity += quantity
+        ii.save
+      end
+    else
+      ii = InventoryItem.new
+      ii.item = item
+      if quantity <= self.space
+        ii.quantity = quantity
+        inventory_items << ii
+      end
     end
   end
 
@@ -54,6 +66,7 @@ class Inventory < ApplicationRecord
 
       remove_item(item, quantity)
       inventory.add_item(item, quantity)
+      quantity
     end
   end
 

@@ -21,8 +21,7 @@ class PlayerController < ApplicationController
 
   def finish_day
     @player = current_player
-    @player.reset_points
-    @player.set_home_location
+    @player.finish_day
   end
 
   def buy_from_location
