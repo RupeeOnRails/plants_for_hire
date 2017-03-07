@@ -2,15 +2,12 @@ $('#detail').fadeOut(100);
 window.setTimeout(function(){
   $('.flash').html('');
   // clear board
-  $('.location').removeClass('player').removeClass('destination');
+  $('.location').removeClass('player');
   // add player with updated location
   $('.location[data-id=<%= @player.location.id %>]').addClass('player');
 
   // update_detail
   $('#detail').html("<%= j render partial: 'map/detail' %>");
-
-
   
   $('#detail').fadeIn('fast');
-  // $('.location[data-id=<%= @player.next_location_id %>]').addClass('destination');
 }, 100);

@@ -81,6 +81,7 @@ s_rule = StockRule.new
 s_rule.item = Tomato.first
 s_rule.price = 0
 s_rule.restock = 12
+s_rule.stock_order = s_order
 s_rule.save
 
 
@@ -91,7 +92,7 @@ b.save
 
 bi = Inventory.new
 bi.size = 120
-bi.owner = s
+bi.owner = b
 bi.save
 
 b_order = StockOrder.new
@@ -102,4 +103,5 @@ b_rule = StockRule.new
 b_rule.item = Tomato.first
 b_rule.price = 1
 b_rule.restock = -32
+b_rule.stock_order = b_order
 b_rule.save

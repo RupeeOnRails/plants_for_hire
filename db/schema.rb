@@ -10,12 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304012615) do
-
-  create_table "buyers", force: :cascade do |t|
-    t.string  "name"
-    t.integer "location_id"
-  end
+ActiveRecord::Schema.define(version: 20170307231713) do
 
   create_table "destinations", force: :cascade do |t|
     t.integer "location_id"
@@ -41,6 +36,12 @@ ActiveRecord::Schema.define(version: 20170304012615) do
   create_table "locations", force: :cascade do |t|
     t.integer "x_position"
     t.integer "y_position"
+  end
+
+  create_table "merchants", force: :cascade do |t|
+    t.string  "name"
+    t.integer "location_id"
+    t.string  "type"
   end
 
   create_table "paths", force: :cascade do |t|
@@ -72,11 +73,6 @@ ActiveRecord::Schema.define(version: 20170304012615) do
     t.integer "item_id"
     t.integer "price"
     t.integer "restock"
-  end
-
-  create_table "suppliers", force: :cascade do |t|
-    t.string  "name"
-    t.integer "location_id"
   end
 
 end

@@ -1,5 +1,5 @@
 class StockOrder < ApplicationRecord
   belongs_to :merchant, polymorphic: true
-  has_many :stock_rules
+  has_many :stock_rules, dependent: :destroy
   
 end
