@@ -24,7 +24,5 @@ Rails.application.routes.draw do
   get 'buy_from_location', to: 'player#buy_from_location'
   get 'sell_from_location', to: 'player#sell_from_location'
 
-  mount ActionCable.server => '/cable'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
