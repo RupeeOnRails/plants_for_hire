@@ -3,6 +3,8 @@ class Inventory < ApplicationRecord
   has_many :items, through: :inventory_items
   belongs_to :owner, polymorphic: true
 
+  validates_presence_of :size
+
   def to_s
     if inventory_items.blank?
       '(empty)'
@@ -80,6 +82,19 @@ class Inventory < ApplicationRecord
 
   def item_count(item)
     inventory_items.find{|ii| ii.item == item}.quantity
+  end
+
+  def restock(stock_order)
+    stock_order.stock_rules.each do |rule|
+      current_restock = if (number_of_items + rule.restock) < 0
+        -1 * number_of_items
+      elsif space <= rule.restock
+        space
+      else
+        rule.restock
+      end
+      adjust_item rule.item, current_restock
+    end
   end
 
 end

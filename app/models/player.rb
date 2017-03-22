@@ -4,6 +4,8 @@ class Player < ApplicationRecord
   has_one :inventory, as: :owner
   has_many :inventory_items, through: :inventory
   has_many :items, through: :inventory_items
+  has_many :contacts
+  has_many :merchants, through: :contacts
 
   # after_create :initialize_inventory
 
@@ -61,8 +63,8 @@ class Player < ApplicationRecord
     name
   end
 
-  def buy_from(supplier, item)
-    source = supplier.inventory
+  def buy_from(supplier_contact, item)
+    source = supplier_contact.inventory
     target = inventory
 
     # something about cost
@@ -73,13 +75,13 @@ class Player < ApplicationRecord
     source.unload_to target, item
   end
 
-  def sell_to(buyer, item)
+  def sell_to(buyer_contact, item)
     return false if item.nil?
 
     source = inventory
-    target = buyer.inventory
+    target = buyer_contact.inventory
 
-    cost = buyer.price_for(item)
+    cost = buyer_contact.merchant.price_for(item)
     
     quantity = source.unload_to target, item
     total = cost * quantity
@@ -98,16 +100,18 @@ class Player < ApplicationRecord
   def buy
     if location_actions.include? :buy
       supplier = location.suppliers.first
-      item = supplier.items.first
-      buy_from supplier, item
+      contact = get_or_create_contact_for supplier
+      item = contact.items.first
+      buy_from contact, item
     end
   end
 
   def sell
     if location_actions.include? :sell
       buyer = location.buyers.first
+      contact = get_or_create_contact_for buyer
       item = items.first
-      sell_to buyer, item
+      sell_to contact, item
     end
 
   end
@@ -119,7 +123,14 @@ class Player < ApplicationRecord
   end
 
   def trigger_restock
-    Buyer.all.each {|b| b.restock}
-    Supplier.all.each {|s| s.restock}
+    contacts.each {|c| c.restock}
+  end
+
+  def get_or_create_contact_for(merchant)
+    if merchants.include? merchant
+      contacts.find {|c| c.merchant == merchant}
+    else
+      Contact.make(self, merchant)
+    end
   end
 end

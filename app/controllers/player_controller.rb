@@ -9,6 +9,9 @@ class PlayerController < ApplicationController
     elsif @location.suppliers.present?
       @location.suppliers.first
     end
+    if @merchant
+      @contact = @player.get_or_create_contact_for(@merchant)
+    end
     if !@error
       render 'move'
     else

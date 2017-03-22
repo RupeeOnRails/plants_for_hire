@@ -68,13 +68,9 @@ s.name = 'Mrs. Spaghetti'
 s.location = Location.find 28
 s.save
 
-si = Inventory.new
-si.size = 120
-si.owner = s
-si.save
-
 s_order = StockOrder.new
 s_order.merchant = s
+s_order.size = 120
 s_order.save
 
 s_rule = StockRule.new
@@ -90,13 +86,9 @@ b.name = "Food 'N' Stuff"
 b.location = Location.find 30
 b.save
 
-bi = Inventory.new
-bi.size = 120
-bi.owner = b
-bi.save
-
 b_order = StockOrder.new
 b_order.merchant = b
+b_order.size = 120
 b_order.save
 
 b_rule = StockRule.new
