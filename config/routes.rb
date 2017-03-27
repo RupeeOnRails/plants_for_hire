@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :players
   get 'map/index'
   get 'map', to: 'map#index'
 
@@ -14,7 +15,9 @@ Rails.application.routes.draw do
   get 'play', to: 'map#play'
 
   root to: 'map#play'
-
+  # devise_scope :player do
+    # root to: "devise/sessions#new"
+  # end
   resources :locations
 
   resources :player
@@ -23,6 +26,8 @@ Rails.application.routes.draw do
 
   get 'buy_from_location', to: 'player#buy_from_location'
   get 'sell_from_location', to: 'player#sell_from_location'
+
+  get 'account_settings', to: 'player#account_settings'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

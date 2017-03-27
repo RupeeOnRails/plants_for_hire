@@ -4,6 +4,7 @@ class PlayerController < ApplicationController
     @location = Location.find params[:location_id]
     @player = current_player
     @error = @player.set_destination(@location)
+    # byebug
     @merchant = if @location.buyers.present?
       @location.buyers.first
     elsif @location.suppliers.present?
@@ -37,5 +38,9 @@ class PlayerController < ApplicationController
     @player = current_player
     @player.sell
     render 'player/sell'
+  end
+
+  def account_settings
+
   end
 end

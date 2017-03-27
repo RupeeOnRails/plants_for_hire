@@ -1,8 +1,27 @@
-= render partial: 'map'
+#play_container
+  = render partial: 'map'
 
-#detail
-  = render partial: 'detail'
+  #detail
+    = render partial: 'detail'
 
+#curtain.hidden
+  #light_window.hidden
+    %header
+      %i.material-icons person
+      .title Account
+      = content_tag :a, nil, id: 'close_light_window' do
+        %i.material-icons clear
+    .body
+      %p
+        %strong Email:
+        = @player.email
+      %p
+        %strong Last login:
+        = time_ago_in_words @player.last_sign_in_at
+        ago
+    %footer
+      = link_to 'Edit Account', edit_player_registration_path, class: 'left_corner'
+      = link_to 'Log Out', destroy_player_session_path, method: :delete, class: 'right_corner'
 
 :javascript
   $('.location[data-id=#{@player.location.id}]').addClass('player');

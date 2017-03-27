@@ -1,0 +1,137 @@
+#curtain
+  width: 100%
+  height: 100%
+  opacity: 1
+  display: flex
+  justify-content: center
+  align-items: center
+
+  background: rgba(0,0,0,0.5)
+  position: absolute
+  z-index: 10
+  top: 0px
+
+  transition: all .15s ease-out
+
+  &.hidden
+    opacity: 0
+    z-index: -1
+
+$corners: 3px
+
+#light_window
+  opacity: 1
+  background: #f9f9f9
+  width: 360px
+  display: flex
+  flex-direction: column
+  border-radius: $corners
+  min-height: 16em
+
+  box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.5)
+
+  transition: opacity .2s ease-out, transform .2s ease-out
+
+  &:not(.hidden)
+
+
+  &.hidden
+    $vector: translate(0,5em)
+    transform: $vector
+    -webkit-transform: $vector
+    opacity: 0
+
+
+  header
+    background: #4a148c
+    color: white
+    padding: 0.5em
+    display: flex
+    font: bold 140% verdana, sans-serif
+
+    border-top-left-radius: $corners
+    border-top-right-radius: $corners
+    justify-content: space-between
+
+    .spacer
+      width: 36px
+
+    .material-icons
+      font-size: 32px
+      line-height: 27px
+
+    a
+      line-height: 1px
+      cursor: pointer
+      color: rgba(255,255,255,0.47)
+
+      transition: all .2s ease-out
+      &:hover
+        color: rgba(255,255,255,0.97)
+
+  .body
+    padding: 1em
+    flex: 1
+    display: flex
+    font-size: 120%
+    flex-direction: column
+    justify-content: space-around
+    align-items: center
+
+    p
+      width: 100%
+
+  footer
+    display: flex
+    justify-content: space-around
+
+    border-radius: $corners
+
+    a
+      padding: 1em 2em
+      text-decoration: none
+      text-align: center
+      font: bold 103% verdana, sans-serif
+      background: #74369a
+      color: white
+      flex: 1
+
+      transition: all .2s ease-out
+      &:hover
+        background: #76eab1
+        color: rgba(0,0,0,0.6)
+
+    .left_corner
+      border-bottom-left-radius: $corners
+    .right_corner
+      border-bottom-right-radius: $corners
+
+  form
+    width: 100%
+
+  input
+    font-size: 120%
+    width: 84.4%
+    padding: .5em 1em
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-bottom: 0.5em
+
+  input[type='button'], input[type='submit']
+    width: 100%
+    padding: 0.25em 0
+
+  input[type=checkbox]
+    width: 1em
+    display: inline
+
+#links
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+
+  a
+    display: inline-block
+    padding: .25em

@@ -1,6 +1,6 @@
 class MapController < ApplicationController
 
-  before_filter :set_locations, :set_paths
+  before_filter :authenticate_player!, :set_locations, :set_paths
 
   def index
   end
@@ -20,7 +20,7 @@ class MapController < ApplicationController
   end
 
   def play
-    @player = Player.first
+    @player = current_player
     @location = @player.location
     @merchant = if @location.buyers.present?
       @location.buyers.first

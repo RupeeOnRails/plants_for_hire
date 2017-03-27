@@ -7,11 +7,28 @@ class Player < ApplicationRecord
   has_many :contacts
   has_many :merchants, through: :contacts
 
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   # after_create :initialize_inventory
+
+  after_create :init
 
   STARTING_LOCATION = 19
 
-  after_commit :set_home_location, on: :create
+  def init
+    self.points = 16
+    self.location = Location.find STARTING_LOCATION
+    save
+    new_inventory = Inventory.new
+    new_inventory.size = 24
+    new_inventory.owner = self
+    new_inventory.save
+  end
+
+  # after_commit :set_home_location, on: :create
 
   # def initialize_inventory
   #   i = Inventory.new

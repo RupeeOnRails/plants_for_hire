@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  def current_player
-    Player.first
-  end
-  helper_method :current_player
+  # def current_player
+  #   Player.first
+  # end
+  # helper_method :current_player
 
 end

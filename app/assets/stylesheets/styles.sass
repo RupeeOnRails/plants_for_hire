@@ -5,6 +5,9 @@ body
   background: #ddd
   height: 100%
   margin: 0
+
+#play_container
+  height: 100%
   display: flex
   justify-content: flex-end
 
@@ -39,7 +42,7 @@ body
   table
     width: 100%
 
-  .header
+  header
     display: flex
     align-items: center
     justify-content: space-between
@@ -52,13 +55,20 @@ body
       font-size: 29px
     .spacer
       width: 29px
+    a
+      line-height: 14px
+      color: rgba(255,255,255,0.4)
+      transition: all .15s ease-out
+      cursor: pointer
+      &:hover
+        color: rgba(255,255,255,0.97)
 
   .body
     padding: .5em 1em
 
-#player_detail .header
+#player_detail header
   background: #0a0
-#location_detail .header
+#location_detail header
   background: #00c
 
 .flash
