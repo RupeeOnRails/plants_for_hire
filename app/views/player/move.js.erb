@@ -1,7 +1,7 @@
-$('#detail').fadeOut(100);
+// $('#detail').fadeOut(100);
 window.setTimeout(function(){
   $('#detail').html("<%= j render partial: 'map/detail' %>");
   $('.location').removeClass('player');
   $('.location[data-id=<%= @player.location.id %>]').addClass('player');
-  $('#detail').fadeIn('fast');
+  // $('#detail').fadeIn('fast');
 }, 100);

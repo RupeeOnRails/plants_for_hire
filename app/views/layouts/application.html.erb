@@ -11,7 +11,17 @@
   </head>
 
   <body>
-    <p id="notice"><%= notice %></p>
+    <div id="messages">
+      <template id='flash'>
+        <p class="flash inactive" id="notice">message</p>
+      </template>
+    </div>
+
+    <script>
+      <% if notice %>
+        flash('<%= notice %>');
+      <% end %>
+    </script>
 
     <%= yield %>
   </body>

@@ -2,6 +2,7 @@ class Location < ApplicationRecord
   has_many :paths
   has_many :neighbors, through: :paths, dependent: :destroy
   has_many :players
+  has_many :merchants
   has_many :suppliers
   has_many :buyers
   

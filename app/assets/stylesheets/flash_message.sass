@@ -1,0 +1,27 @@
+.flash
+  position: absolute
+  left: 40px
+  bottom: 40px
+  z-index: 11
+  max-width: 20em
+
+  display: flex
+  margin: 0
+  padding: 1em 2em
+  background: green
+  color: white
+  box-shadow: 0px 2px 8px rgba(0,0,0,.5)
+  border-radius: 5px
+
+  font: bold 110% verdana
+
+  cursor: pointer
+
+  transform: translate(0, 0)
+  transition: transform .35s ease-in-out
+
+  &.inactive
+    transform: translate(0, 6em)
+
+  &.hidden
+    transform: translate(-30em, 0)

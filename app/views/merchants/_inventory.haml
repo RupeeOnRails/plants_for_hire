@@ -1,0 +1,20 @@
+%table
+  %tr
+    %td#whats_up(colspan=4)
+  - if @merchant    
+    %tr
+      %th(colspan=4)
+        = "Inventory: (#{@contact.inventory.number_of_items}/#{@contact.inventory.size})"
+    - @contact.inventory.inventory_items.each do |ii|
+      %tr
+        %td(style='width:.5em;')= ii.quantity
+        %td(style='width:1em;') x
+        %td= ii.item.class.to_s
+        %td
+    %tr
+      %td
+        - if @player.location.suppliers.present?
+          = link_to '(buy)', buy_from_location_path, remote: true
+
+        - if @player.location.buyers.present?
+          = link_to '(sell)', sell_from_location_path, remote: true

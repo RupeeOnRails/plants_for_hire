@@ -1,30 +1,61 @@
+#locations
+  z-index: 3
+  @extend .unselectable
+
 .location
-  border-radius: 33%
-  width: 36px
-  height: 24px
+  border-radius: 50%
+  width: 29px
+  height: 29px
   position: absolute
   background: blue
   color: white
   display: flex
   align-items: center
   justify-content: center
-  box-shadow: 0 1px 3px rgba(0,0,0,.6)
 
   cursor: pointer
 
-  transition: all .15s ease-out
+  background-clip: padding-box
 
-  &.viewing
-    transform: scale(1.25)
-    box-shadow: 0 1px 4px rgba(0,0,0,.5)
+
+  margin-top: -12px
+  margin-left: -12px
+
+  transition: background .14s linear
+
+  &:hover
+    box-shadow: 0 1px 6px rgba(0,0,0,0.88)
+
+
+  &.contact
+    background: #ffab00
+    color: rgba(0,0,0,0.71)
+    background-clip: padding-box
+
+  &.upgrade_store
+    background: #fa0
 
   &.player
     background: #0f0
-    color: black
+    box-shadow: 0 3px 9px rgba(0,0,0,0.8)
+  
+    -webkit-animation: pulsate 3s ease
+    -webkit-animation-iteration-count: infinite
 
-  &.destination
-    background: #0ff
-    color: black
+    @-webkit-keyframes pulsate
+      0%
+        -webkit-transform: scale(1, 1)
+        box-shadow: 0 1px 6px rgba(0,0,0,0.88)
+      50%
+        -webkit-transform: scale(1.25, 1.25)
+        box-shadow: 0 2px 9px rgba(0,0,0,0.6)
+
+      100%
+        -webkit-transform: scale(1, 1)
+        box-shadow: 0 1px 6px rgba(0,0,0,0.88)
+
+
+
 
 .new_location
   @extend  .location
@@ -34,4 +65,12 @@ canvas
   position: absolute
   left: 0
   top: 0
-  z-index: -10
+  z-index: 2
+  pointer-events: none
+
+
+.unselectable
+  -webkit-user-select: none
+  -moz-user-select: none
+  user-select: none
+  

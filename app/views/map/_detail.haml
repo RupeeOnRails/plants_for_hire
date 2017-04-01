@@ -1,24 +1,10 @@
-.card#location_detail
+.card#location_detail{ class: @merchant ? 'merchant' : '' }
   %header
     %i.material-icons location_on
-    .title Location
+    .title= @player.location.merchants.first || "Location #{@player.location_id}"
     .spacer
   .body
-    %table
-      %tr
-        %td#whats_up(colspan=2)
-          - if @player.location.suppliers.present?
-            = @player.location.suppliers.first
-            = link_to '(buy)', buy_from_location_path, remote: true
-
-          - if @player.location.buyers.present?
-            = @player.location.buyers.first
-            = link_to '(sell)', sell_from_location_path, remote: true
-      - if @merchant
-        %tr
-          %th(colspan=2) Inventory:
-        %tr
-          %td(colspan=2)= @contact.inventory
+    = render partial: 'merchants/inventory'
 
 .card#player_detail
   %header
@@ -27,17 +13,7 @@
     = content_tag :a, nil, id: 'activate_light_window' do
       %i.material-icons settings
   .body
-    %table
-      %tr
-        %th.left_align Points:
-        %td#points= @player.points
-      %tr
-        %th.left_align Money:
-        %td= @player.money
-      %tr
-        %th(colspan=2) Inventory:
-      %tr
-        %td(colspan=2)= @player.inventory
+    = render partial: 'player/inventory'
       
     %p
       = link_to 'Finish Day', finish_day_path, remote: true

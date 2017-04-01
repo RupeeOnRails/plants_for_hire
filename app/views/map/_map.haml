@@ -1,19 +1,19 @@
-- horizontal_offset = 50
-- vertical_offset = 150
+- horizontal_offset = 0
+- vertical_offset = 100
 
 #locations
   - @locations.each do |location|
-    .location{ style:"left: #{ location.x + horizontal_offset }px; top: #{ location.y + vertical_offset }px", data: { id: location.id } }
-      = location
+    - klass = 'contact' if location.merchants.present?
+    .location{ style:"left: #{ location.x + horizontal_offset }px; top: #{ location.y + vertical_offset }px", data: { id: location.id }, class: klass }
 
-%canvas#canvas{ width: '920px', height: '760px' }
+%canvas#canvas{ width: '700px', height: '700px' }
   :javascript
     var c = document.getElementById("canvas");
     var ctx = c.getContext("2d");
 
     var paths = #{@paths.to_json}
-    var horizontal_offset = 68
-    var vertical_offset = 162
+    var horizontal_offset = 3
+    var vertical_offset = 103
 
     paths.forEach(function(path){
       ctx.moveTo(path[0][0] + horizontal_offset, path[0][1] + vertical_offset);

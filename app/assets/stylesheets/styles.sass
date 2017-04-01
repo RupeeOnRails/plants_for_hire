@@ -2,9 +2,10 @@ html
   height: 100%
 
 body
-  background: #ddd
+  background: #dfdfdf
   height: 100%
   margin: 0
+  overflow: hidden
 
 #play_container
   height: 100%
@@ -20,14 +21,18 @@ body
   display: flex
   flex-direction: column
   justify-content: space-around
-  padding: 1.5em 2em
+  padding: 0 2em
+
+$corners: 3px
 
 .card
   font-size: 150%
   background: #fafafa
   box-shadow: 0 2px 8px rgba(0,0,0,.6)
-  width: 9em
+  width: 12em
   height: 12em
+
+  border-radius: $corners
 
   h2
     margin: 0 0 .5em
@@ -48,7 +53,12 @@ body
     justify-content: space-between
     padding: .5em
     color: white
-    font-weight: bold
+    font: bold 85% verdana
+
+    border-top-left-radius: $corners
+    border-top-right-radius: $corners
+
+    transition: background .2s ease-in-out
 
     i.material-icons
       line-height: .85em
@@ -68,12 +78,18 @@ body
 
 #player_detail header
   background: #0a0
-#location_detail header
-  background: #00c
-
-.flash
-  display: inline-block
-  text-align: center
+  
+#location_detail
+  header
+    background: #00c
+  &.merchant header
+    background: #ec9e00
 
 .left_align
   text-align: left
+
+.unselectable
+  -webkit-user-select: none
+  -moz-user-select: none
+  user-select: none
+  
