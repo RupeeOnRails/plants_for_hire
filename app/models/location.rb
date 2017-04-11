@@ -44,4 +44,49 @@ class Location < ApplicationRecord
     list
   end
 
+  def neighbor_coordinates
+    neighbors.map do |location|
+      [location.x_position, location.y_position]
+    end
+  end
+
+  def neighbor_relative_coordinates
+    neighbors.map do |location|
+      [location, location.x - x, location.y - y]
+    end
+  end
+
+  # y > x, y < -x
+  def left
+    relative = neighbor_relative_coordinates.find do |neighbor|
+      neighbor[2] > neighbor[1] && neighbor[2] < -neighbor[1]
+    end
+    relative[0] if relative
+  end
+  
+  # y < x, y < -x
+  def up
+    relative = neighbor_relative_coordinates.find do |neighbor|
+      neighbor[2] < neighbor[1] && neighbor[2] < -neighbor[1]
+    end
+    relative[0] if relative
+  end
+
+
+  # y < x, y > -x
+  def right
+    relative = neighbor_relative_coordinates.find do |neighbor|
+      neighbor[2] < neighbor[1] && neighbor[2] > -neighbor[1]
+    end
+    relative[0] if relative
+  end
+
+  # y > x, y > -x
+  def down
+    relative = neighbor_relative_coordinates.find do |neighbor|
+      neighbor[2] > neighbor[1] && neighbor[2] > -neighbor[1]
+    end
+    relative[0] if relative
+  end
+
 end

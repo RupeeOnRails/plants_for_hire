@@ -10,16 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402141832) do
+ActiveRecord::Schema.define(version: 20170411115512) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer "player_id"
     t.integer "merchant_id"
-  end
-
-  create_table "destinations", force: :cascade do |t|
-    t.integer "location_id"
-    t.integer "next_destination_id"
   end
 
   create_table "inventories", force: :cascade do |t|
@@ -63,7 +58,6 @@ ActiveRecord::Schema.define(version: 20170402141832) do
   create_table "players", force: :cascade do |t|
     t.string   "name"
     t.integer  "location_id"
-    t.integer  "destination_id"
     t.float    "points"
     t.integer  "money",                  default: 0
     t.string   "email",                  default: "", null: false

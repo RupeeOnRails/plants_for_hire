@@ -1,6 +1,5 @@
 class Player < ApplicationRecord
   belongs_to :location, optional: true
-  belongs_to :destination, optional: true
   has_one :inventory, as: :owner
   has_many :inventory_items, through: :inventory
   has_many :items, through: :inventory_items
@@ -12,7 +11,6 @@ class Player < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # after_create :initialize_inventory
 
   after_create :init
 
@@ -28,22 +26,13 @@ class Player < ApplicationRecord
     new_inventory.save
   end
 
-  # after_commit :set_home_location, on: :create
-
-  # def initialize_inventory
-  #   i = Inventory.new
-  #   i.size = 24
-  #   i.save
-  #   self.inventory = i
-  # end
-
   def set_home_location
     self.location_id = STARTING_LOCATION
     save
   end
 
   # if success returns falsey, failure returns error message
-  def set_destination(location)
+  def move_to(location)
     if !has_neighbor?(location)
       'Please select a neighboring location.'
     else

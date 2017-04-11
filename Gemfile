@@ -52,3 +52,5 @@ gem 'haml'
 gem 'meta_request'
 
 gem 'devise'
+
+gem 'thin'

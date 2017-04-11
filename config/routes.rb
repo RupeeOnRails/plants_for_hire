@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   # end
   resources :locations
 
-  resources :player
   get 'player/move/:location_id', to: 'player#move'
   get 'finish_day', to: 'player#finish_day', as: 'finish_day'
 
@@ -28,6 +27,14 @@ Rails.application.routes.draw do
   get 'sell_from_location', to: 'player#sell_from_location'
 
   get 'account_settings', to: 'player#account_settings'
+
+  get 'player/move_left'
+  get 'player/move_up'
+  get 'player/move_right'
+  get 'player/move_down'
+
+  
+  resources :player
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
