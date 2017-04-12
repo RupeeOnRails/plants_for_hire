@@ -17,7 +17,8 @@ class Player < ApplicationRecord
   STARTING_LOCATION = 19
 
   def init
-    self.points = 16
+    self.hours = 16
+    self.day = 1
     self.location = Location.find STARTING_LOCATION
     save
     new_inventory = Inventory.new
@@ -36,13 +37,13 @@ class Player < ApplicationRecord
     if !has_neighbor?(location)
       'Please select a neighboring location.'
     else
-      if points >= 0.25
-        self.points -= 0.25
+      if hours >= 0.25
+        self.hours -= 0.25
         set_location location
         save
         false
       else
-        'Not enough points.'
+        'The day is over. Click "Finish Day"'
       end
     end
   end
@@ -52,8 +53,8 @@ class Player < ApplicationRecord
     save
   end
 
-  def reset_points
-    self.points = 16
+  def reset_hours
+    self.hours = 16
     save
   end
 
@@ -123,7 +124,8 @@ class Player < ApplicationRecord
   end
 
   def finish_day
-    reset_points
+    reset_hours
+    self.day = self.day + 1
     set_home_location
     trigger_restock
   end
