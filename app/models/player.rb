@@ -74,12 +74,11 @@ class Player < ApplicationRecord
     source = supplier_contact.inventory
     target = inventory
 
-    # something about cost
-
-
-
-    
-    source.unload_to target, item
+    cost = supplier_contact.merchant.price_for(item)
+    quantity = source.unload_to target, item
+    total = cost * quantity
+    self.money -= total
+    save
   end
 
   def sell_to(buyer_contact, item)
