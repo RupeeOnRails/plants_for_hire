@@ -3,34 +3,28 @@
   @extend .unselectable
 
 .location
-  border-radius: 50%
-  width: 29px
-  height: 29px
+  $size: 29px
+  
   position: absolute
+  margin-top: -12px
+  margin-left: -12px
+
+  width: $size
+  height: $size
+  border-radius: 50%
+  
   background: blue
-  color: white
-  display: flex
-  align-items: center
-  justify-content: center
 
   cursor: pointer
 
-  background-clip: padding-box
-
-
-  margin-top: -12px
-  margin-left: -12px
 
   transition: background .14s linear
 
   &:hover
     box-shadow: 0 1px 6px rgba(0,0,0,0.88)
 
-
   &.contact
     background: #ffab00
-    color: rgba(0,0,0,0.71)
-    background-clip: padding-box
 
   &.upgrade_store
     background: #fa0
