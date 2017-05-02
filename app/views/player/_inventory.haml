@@ -6,7 +6,7 @@
     %th.left_align Money:
     %td= @player.money
   %tr
-    %th(colspan=2) Inventory:
+    %th(colspan=2)
+      = "Inventory: (#{@player.inventory.number_of_items}/#{@player.inventory.size})"
   %tr
     %td(colspan=2)= @player.inventory
-    
