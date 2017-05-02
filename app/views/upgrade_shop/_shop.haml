@@ -1,0 +1,12 @@
+%table
+  %tr
+    %th(colspan=4)
+      Available Upgrades:
+  - @upgrade_shop.upgrade_stocks.each do |stock|
+    %tr
+      %td(style='width:5em;')
+        - klass = @player.can_buy_upgrade(stock.upgrade) ? nil : 'disabled'
+        = link_to stock.upgrade, buy_upgrade_path(stock.upgrade.id), remote: true, class: klass
+      %td
+        %span(style='text-decoration:line-through;') M
+        = stock.price

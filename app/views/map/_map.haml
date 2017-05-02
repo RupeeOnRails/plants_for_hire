@@ -4,6 +4,7 @@
 #locations
   - @locations.each do |location|
     - klass = 'contact' if location.merchants.present?
+    - klass = 'upgrade_shop' if location.upgrade_shop.present?
     .location{ style:"left: #{ location.x + horizontal_offset }px; top: #{ location.y + vertical_offset }px", data: { id: location.id }, class: klass }
 
 %canvas#canvas{ width: '700px', height: '700px' }

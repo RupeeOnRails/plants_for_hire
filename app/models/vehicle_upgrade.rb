@@ -1,0 +1,3 @@
+class VehicleUpgrade < Upgrade
+  
+end

@@ -14,15 +14,18 @@ class Player < ApplicationRecord
 
   after_create :init
 
+  has_many :player_upgrades
+  has_many :upgrades, through: :player_upgrades
+
   STARTING_LOCATION = 19
 
   def init
     self.hours = 16
     self.day = 1
     self.location = Location.find STARTING_LOCATION
+    self.upgrades << Upgrade.find_by_name('Bicycle')
     save
-    new_inventory = Inventory.new
-    new_inventory.size = 24
+    new_inventory = PlayerInventory.new
     new_inventory.owner = self
     new_inventory.save
   end
@@ -139,5 +142,27 @@ class Player < ApplicationRecord
     else
       Contact.make(self, merchant)
     end
+  end
+
+  def buy_upgrade(upgrade_stock)
+    if can_buy_upgrade(upgrade_stock.upgrade)
+      if money >= upgrade_stock.price
+        self.money = money - upgrade_stock.price
+        save
+        upgrades << upgrade_stock.upgrade
+      end
+    end
+  end
+
+  def vehicle_tier
+    upgrades.pluck(:tier).max
+  end
+
+  def vehicle
+    upgrades.sort_by {|upgrade| upgrade.tier}.last
+  end
+
+  def can_buy_upgrade(upgrade)
+    vehicle_tier < upgrade.tier
   end
 end

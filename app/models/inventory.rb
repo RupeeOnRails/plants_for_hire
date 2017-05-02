@@ -3,7 +3,7 @@ class Inventory < ApplicationRecord
   has_many :items, through: :inventory_items
   belongs_to :owner, polymorphic: true
 
-  validates_presence_of :size
+  validates_presence_of :size, unless: Proc.new {|i| i.type == 'PlayerInventory'}
 
   def to_s
     if inventory_items.blank?

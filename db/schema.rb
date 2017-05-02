@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412161348) do
+ActiveRecord::Schema.define(version: 20170429130522) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer "player_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170412161348) do
     t.integer "owner_id"
     t.string  "owner_type"
     t.integer "size"
+    t.string  "type"
   end
 
   create_table "inventory_items", force: :cascade do |t|
@@ -53,6 +54,11 @@ ActiveRecord::Schema.define(version: 20170412161348) do
     t.index ["location_id", "neighbor_id"], name: "index_paths_on_location_id_and_neighbor_id", unique: true
     t.index ["location_id"], name: "index_paths_on_location_id"
     t.index ["neighbor_id"], name: "index_paths_on_neighbor_id"
+  end
+
+  create_table "player_upgrades", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "upgrade_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -91,6 +97,20 @@ ActiveRecord::Schema.define(version: 20170412161348) do
   create_table "upgrade_shops", force: :cascade do |t|
     t.string  "name"
     t.integer "location_id"
+  end
+
+  create_table "upgrade_stocks", force: :cascade do |t|
+    t.integer "upgrade_id"
+    t.integer "upgrade_shop_id"
+    t.integer "price"
+  end
+
+  create_table "upgrades", force: :cascade do |t|
+    t.integer "speed"
+    t.integer "inventory"
+    t.string  "name"
+    t.integer "tier"
+    t.string  "type"
   end
 
 end

@@ -35,6 +35,10 @@ Rails.application.routes.draw do
 
   
   resources :player
+  get 'buy_upgrade/:upgrade_id', to: 'player#buy_upgrade', as: 'buy_upgrade'
+
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

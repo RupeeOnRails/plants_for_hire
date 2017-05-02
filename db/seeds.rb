@@ -139,4 +139,15 @@ b_rule2.restock = -20
 b_rule2.stock_order = b_order
 b_rule2.save
 
+shop = UpgradeShop.create name: 'Upgrade Shop', location_id: 40
 
+bike   = VehicleUpgrade.create name: 'Bicycle', inventory: 24,   speed: 4,  tier: 0
+basket = VehicleUpgrade.create name: 'Basket',  inventory: 48,   speed: 4,  tier: 1
+cart   = VehicleUpgrade.create name: 'Cart',    inventory: 256,  speed: 3,  tier: 2
+van    = VehicleUpgrade.create name: 'Van',     inventory: 1024, speed: 11, tier: 3
+pickup = VehicleUpgrade.create name: 'Pickup',  inventory: 2048, speed: 12, tier: 4
+
+shop.add_upgrade basket, 100
+shop.add_upgrade cart, 1000
+shop.add_upgrade van, 20000
+shop.add_upgrade pickup, 30000

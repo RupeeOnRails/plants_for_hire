@@ -29,7 +29,10 @@ class MapController < ApplicationController
     end
     if @merchant
       @contact = @player.get_or_create_contact_for(@merchant)
+    elsif @location.upgrade_shop
+      @upgrade_shop = @location.upgrade_shop
     end
+
   end
 
   private

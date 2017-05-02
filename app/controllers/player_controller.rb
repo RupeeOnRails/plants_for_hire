@@ -43,6 +43,19 @@ class PlayerController < ApplicationController
     execute_move if @location
   end
 
+  def buy_upgrade
+    @player = current_player
+    @upgrade = Upgrade.find params[:upgrade_id]
+    @location = current_player.location
+    @shop = @location.upgrade_shop
+    if @shop.present?
+      stock = @shop.upgrade_stocks.find {|stock| stock.upgrade == @upgrade }
+      @player.buy_upgrade stock
+    else
+      render nothing: true
+    end
+  end
+
   private
 
   def set_merchant
@@ -51,6 +64,9 @@ class PlayerController < ApplicationController
     @merchant = location.merchants.first
     if @merchant
       @contact = current_player.get_or_create_contact_for @merchant
+    end
+    if location.upgrade_shop
+      @upgrade_shop = location.upgrade_shop
     end
   end
 

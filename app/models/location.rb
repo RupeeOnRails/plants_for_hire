@@ -5,6 +5,7 @@ class Location < ApplicationRecord
   has_many :merchants
   has_many :suppliers
   has_many :buyers
+  has_one :upgrade_shop
   
   accepts_nested_attributes_for :paths
 

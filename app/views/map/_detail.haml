@@ -1,10 +1,18 @@
-.card#location_detail{ class: @merchant ? 'merchant' : '' }
+- klass = if @merchant
+  - 'merchant'
+- elsif @upgrade_shop
+  - 'upgrade_shop'  
+.card#location_detail{ class: klass }
   %header
     %i.material-icons location_on
-    .title= @player.location.merchants.first || "Location #{@player.location_id}"
+    .title
+      = @player.location.merchants.first || @player.location.upgrade_shop || "Location #{@player.location_id}"
     .spacer
   .body
-    = render partial: 'merchants/inventory'
+    - if @merchant
+      = render partial: 'merchants/inventory'
+    - elsif @upgrade_shop
+      = render partial: 'upgrade_shop/shop'
 
 .card#player_detail
   %header
