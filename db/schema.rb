@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170429130522) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "contacts", force: :cascade do |t|
     t.integer "player_id"
     t.integer "merchant_id"
@@ -51,9 +54,9 @@ ActiveRecord::Schema.define(version: 20170429130522) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "distance"
-    t.index ["location_id", "neighbor_id"], name: "index_paths_on_location_id_and_neighbor_id", unique: true
-    t.index ["location_id"], name: "index_paths_on_location_id"
-    t.index ["neighbor_id"], name: "index_paths_on_neighbor_id"
+    t.index ["location_id", "neighbor_id"], name: "index_paths_on_location_id_and_neighbor_id", unique: true, using: :btree
+    t.index ["location_id"], name: "index_paths_on_location_id", using: :btree
+    t.index ["neighbor_id"], name: "index_paths_on_neighbor_id", using: :btree
   end
 
   create_table "player_upgrades", force: :cascade do |t|
@@ -77,8 +80,8 @@ ActiveRecord::Schema.define(version: 20170429130522) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "day"
-    t.index ["email"], name: "index_players_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_players_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "stock_orders", force: :cascade do |t|
@@ -113,4 +116,6 @@ ActiveRecord::Schema.define(version: 20170429130522) do
     t.string  "type"
   end
 
+  add_foreign_key "paths", "locations"
+  add_foreign_key "paths", "locations", column: "neighbor_id"
 end
