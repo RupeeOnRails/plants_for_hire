@@ -18,7 +18,7 @@
   %header
     %i.material-icons person
     .title Player
-    = content_tag :a, nil, id: 'activate_light_window' do
+    = content_tag :a, nil, class: 'activate_light_window', data: { target: 'account_settings' } do
       %i.material-icons settings
   .body
     = render partial: 'player/inventory'

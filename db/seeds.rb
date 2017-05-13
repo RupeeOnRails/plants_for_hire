@@ -151,3 +151,12 @@ shop.add_upgrade basket, 100
 shop.add_upgrade cart, 1000
 shop.add_upgrade van, 20000
 shop.add_upgrade pickup, 30000
+
+
+intro = 'Welcome to Plants For Hire! Behind this message you will see the Town Map. '\
+        'The colored dots are locations. The green dot is you. '\
+        'Travel to a neighboring location by clicking on it or using the arrow keys. '\
+        'Your next-door neighbor Mrs. Spaghetti has heard about your business plans and has '\
+        'offered her surplus of tomatoes to you free of charge! Travel to the orange location marker '\
+        'to pick up your first delivery, then look for a place to sell it!'
+HelpText.create title: 'Introduction', text: intro

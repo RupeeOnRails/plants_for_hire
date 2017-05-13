@@ -1,0 +1,11 @@
+%template#light_window_template
+  .curtain.hidden
+    .light_window.hidden
+      %header
+        %i.material-icons info
+        .title Message
+        = content_tag :a, nil, class: 'close_light_window' do
+          %i.material-icons clear
+      .body
+      %footer
+      

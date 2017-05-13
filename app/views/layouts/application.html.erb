@@ -17,12 +17,22 @@
       </template>
     </div>
 
-    <script>
-      <% if notice %>
+    <% if notice %>
+      <script>
         flash('<%= notice %>');
-      <% end %>
-    </script>
-
+      </script>
+    <% end %>
+    
     <%= yield %>
+
+     <div id="help_button">
+      <%= content_tag :a, nil, class: 'activate_light_window', data: { target: 'introduction' } do %>
+        <i class="material-icons">help</i>
+      <% end %>
+    </div>
+
+    <%= render partial: 'layouts/light_window_template' %>
+
+
   </body>
 </html>

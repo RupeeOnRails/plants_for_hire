@@ -32,7 +32,7 @@ class MapController < ApplicationController
     elsif @location.upgrade_shop
       @upgrade_shop = @location.upgrade_shop
     end
-
+    @help_text = HelpText.first
   end
 
   private

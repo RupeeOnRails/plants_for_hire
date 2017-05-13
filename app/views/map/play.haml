@@ -4,24 +4,26 @@
   #detail
     = render partial: 'detail'
 
-#curtain.hidden
-  #light_window.hidden
-    %header
-      %i.material-icons person
-      .title Account
-      = content_tag :a, nil, id: 'close_light_window' do
-        %i.material-icons clear
-    .body
-      %p
-        %strong Email:
-        = @player.email
-      %p
-        %strong Last login:
-        = time_ago_in_words @player.last_sign_in_at
-        ago
-    %footer
-      = link_to 'Edit Account', edit_player_registration_path, class: 'left_corner'
-      = link_to 'Log Out', destroy_player_session_path, method: :delete, class: 'right_corner'
+= render partial: 'player/account_settings_template'
+
+%template.introduction
+  %header
+    %i.material-icons help_outline
+    .title= @help_text.title
+    = content_tag :a, nil, class: 'close_light_window' do
+      %i.material-icons clear
+  .body= @help_text.text
+  %footer
+    = content_tag :a, 'Continue', class: 'close_light_window'
+
+- @help_message = @help_text.message_for(current_player)
+- unless @help_message.viewed
+  :javascript
+    $(function(){
+      activate_light_window('introduction');
+    });
+  - @help_message.viewed = true
+  - @help_message.save
 
 :javascript
   $('.location[data-id=#{@player.location.id}]').addClass('player');
