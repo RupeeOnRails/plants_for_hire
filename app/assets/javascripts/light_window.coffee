@@ -1,5 +1,10 @@
 root = exports ? this
 
+root.initialize_light_window = (html) ->
+  $('body').append html
+  setTimeout(reveal_curtain, 100)
+  setTimeout(reveal_light_window, 100)
+
 root.activate_light_window = (target) ->
   template = $("template.#{target}")
   curtain_and_window = $('#light_window_template').html()

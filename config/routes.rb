@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :players
+  devise_for :players, controllers: { sessions:      'players/sessions',
+                                      registrations: 'players/registrations'}
+  
+  devise_scope :player do
+    get 'new_guest', to: 'players/registrations#new_guest', as: 'new_guest'
+  end
+
   get 'map/index'
   get 'map', to: 'map#index'
 
@@ -14,10 +20,8 @@ Rails.application.routes.draw do
   get 'map/play'
   get 'play', to: 'map#play'
 
-  root to: 'map#play'
-  # devise_scope :player do
-    # root to: "devise/sessions#new"
-  # end
+  root to: 'welcome#welcome_screen'
+  
   resources :locations
 
   get 'player/move/:location_id', to: 'player#move'
@@ -37,7 +41,7 @@ Rails.application.routes.draw do
   resources :player
   get 'buy_upgrade/:upgrade_id', to: 'player#buy_upgrade', as: 'buy_upgrade'
 
-
+  get 'welcome', to: 'welcome#welcome_screen', as: 'welcome'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -3,6 +3,7 @@ html
 
 body
   background: #dfdfdf
+  
   height: 100%
   margin: 0
   overflow: hidden
@@ -20,7 +21,7 @@ body
   display: flex
   flex-direction: column
   justify-content: space-around
-  padding: 0 2em
+  padding: 0 3em
 
 $corners: 3px
 
@@ -94,6 +95,9 @@ $corners: 3px
   -moz-user-select: none
   user-select: none
   
+i.material-icons
+  @extend .unselectable
+
 a.disabled
   pointer-events: none
   color: #888
@@ -101,11 +105,24 @@ a.disabled
 a
   cursor: pointer
 
-#help_button
+.floating_button
   position: absolute
+  color: rgba(0,0,0,0.4)
+  z-index: 10
+  cursor: pointer
+
+  i
+    font-size: 275%
+
+  &:hover i
+    color: rgba(0,0,0,.79)
+
+#help_button
+  @extend .floating_button
   bottom: 10px
   left: 10px
-  color: rgba(0,0,0,0.4)
-  i
-    font-size: 200%
     
+#volume_button
+  @extend .floating_button
+  bottom: 10px
+  right: 10px

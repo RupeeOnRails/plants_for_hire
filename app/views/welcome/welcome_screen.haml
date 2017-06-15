@@ -1,0 +1,19 @@
+.background
+  = image_tag 'map'
+
+#welcome_container
+
+  %h1#intro_title Plants For<br />Hire
+
+  #actions
+    - unless player_signed_in?
+      = link_to 'Log In', new_player_session_path, remote: true
+      = link_to 'Play as Guest', new_guest_path, remote: true
+      = link_to 'Sign Up', new_player_registration_path, remote: true
+    - else
+      = link_to 'Play', play_path
+      = link_to 'Log Out', destroy_player_session_path, method: :delete
+
+.template#login_form_template
+
+= audio_tag 'intro_music', autoplay: true, id: 'music'

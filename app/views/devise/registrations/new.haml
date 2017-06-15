@@ -1,6 +1,9 @@
 .curtain
-  .light_window
-    %header Sign up
+  .light_window.login
+    %header
+      .title Sign up
+      = content_tag :a, nil, class: 'close_light_window' do
+        %i.material-icons clear
     .body
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = devise_error_messages!
@@ -10,7 +13,6 @@
           %br
           = f.email_field :email, autofocus: true
         
-
         .field
           = f.label :password do
             - if @minimum_password_length
